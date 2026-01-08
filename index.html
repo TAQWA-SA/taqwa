@@ -50,6 +50,16 @@
     }
     </script>
 
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "fec6b627-8ffa-469f-b1b9-830646d23a65",
+        });
+      });
+    </script>
+
     <style>
         :root { --primary: #0f2e26; --gold: #C5A059; --white: #ffffff; --bg-body: #f8f9fa; }
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -349,7 +359,7 @@
             renderKids();
 
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('sw.js');
+                navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed: ', err));
             }
         };
 
